@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
         }else{
             //手机号和密码都不存在，则自动注册
             User newUser = new User(phone, pwd);
+            newUser.setName("用户");
             userRepository.save(newUser);
             return ResponseVO.buildSuccessResponse("注册并登录成功", tokenUtil.getToken(newUser));
         }
