@@ -22,17 +22,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseVO<String> login(String phone, String pwd) {
-        User user = userRepository.findByPhoneAndPwd(phone, pwd).orElseThrow(FanyiException::notRegister);
-        return ResponseVO.buildSuccessResponse("登录成功", tokenUtil.getToken(user));
+        User user = userRepository.findByPhoneAndPwd(phone, pwd).orElse(null);
+        if(user != null) {
+            //手机号和密码都存在
+            return ResponseVO.buildSuccessResponse("登录成功", tokenUtil.getToken(user));
+        }else if(userRepository.findByPhone(phone).isPresent()){
+            //手机号存在，但密码不正确
+            throw FanyiException.WrongPwd();
+        }else{
+            //手机号和密码都不存在，则自动注册
+            User newUser = new User(phone, pwd);
+            userRepository.save(newUser);
+            return ResponseVO.buildSuccessResponse("注册并登录成功", tokenUtil.getToken(newUser));
+        }
     }
 
-    @Override
-    public ResponseVO<Boolean> register(String phone, String pwd) {
-        if (userRepository.findByPhone(phone).isPresent()) throw FanyiException.hasRegistered();
-        User newUser = new User(phone, pwd);
-        userRepository.save(newUser);
-        return ResponseVO.buildSuccessResponse("注册成功", true);
-    }
+//    @Override
+//    public ResponseVO<Boolean> register(String phone, String pwd) {
+//        if (userRepository.findByPhone(phone).isPresent()) throw FanyiException.hasRegistered();
+//        User newUser = new User(phone, pwd);
+//        userRepository.save(newUser);
+//        return ResponseVO.buildSuccessResponse("注册成功", true);
+//    }
 
     @Override
     public ResponseVO<UserVO> info(User currentUser) {

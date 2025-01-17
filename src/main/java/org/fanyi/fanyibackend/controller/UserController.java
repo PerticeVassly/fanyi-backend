@@ -27,12 +27,12 @@ public class UserController {
         return userServiceImpl.login(phone, pwd);
     }
 
-    @PostMapping("/register")
-    public ResponseVO<Boolean> register(@RequestBody Map<String, String> requestData) {
-        String phone = requestData.get("phone");
-        String pwd = requestData.get("pwd");
-        return userServiceImpl.register(phone, pwd);
-    }
+//    @PostMapping("/register")
+//    public ResponseVO<Boolean> register(@RequestBody Map<String, String> requestData) {
+//        String phone = requestData.get("phone");
+//        String pwd = requestData.get("pwd");
+//        return userServiceImpl.register(phone, pwd);
+//    }
 
 
     @GetMapping("/info")

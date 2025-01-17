@@ -10,7 +10,7 @@ public interface UserService {
 
     ResponseVO<String> login(String phone, String pwd);
 
-    ResponseVO<Boolean> register(String phone, String pwd);
+//    ResponseVO<Boolean> register(String phone, String pwd);
 
     ResponseVO<UserVO> info(User currentUser);
 
