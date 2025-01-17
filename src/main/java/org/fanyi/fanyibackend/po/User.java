@@ -31,6 +31,7 @@ public class User {
     public User(String phone, String pwd) {
         this.pwd = pwd;
         this.phone = phone;
+        this.name = "default";
     }
 
     public UserVO toVO() {

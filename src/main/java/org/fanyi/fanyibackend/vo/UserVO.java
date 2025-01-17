@@ -23,5 +23,6 @@ public class UserVO {
     public UserVO(User user) {
         this.name = user.getName();
         this.phone = user.getPhone();
+        this.pwd = user.getPwd();
     }
 }
