@@ -4,7 +4,6 @@ import org.fanyi.fanyibackend.exception.FanyiException;
 import org.fanyi.fanyibackend.po.Word;
 import org.fanyi.fanyibackend.repository.WordBookRepository;
 import org.fanyi.fanyibackend.service.WordBookService;
-import org.fanyi.fanyibackend.util.Translator;
 import org.fanyi.fanyibackend.vo.ResponseVO;
 import org.fanyi.fanyibackend.vo.WordVO;
 import org.springframework.beans.factory.annotation.Autowired;

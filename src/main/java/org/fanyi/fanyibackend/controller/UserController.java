@@ -2,7 +2,6 @@ package org.fanyi.fanyibackend.controller;
 
 import org.fanyi.fanyibackend.po.User;
 import org.fanyi.fanyibackend.service.UserService;
-import org.fanyi.fanyibackend.util.Translator;
 import org.fanyi.fanyibackend.vo.ResponseVO;
 import org.fanyi.fanyibackend.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
