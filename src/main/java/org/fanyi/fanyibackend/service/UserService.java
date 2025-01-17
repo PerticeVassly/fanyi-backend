@@ -13,4 +13,6 @@ public interface UserService {
     ResponseVO<Boolean> register(String phone, String pwd);
 
     ResponseVO<UserVO> info(User currentUser);
+
+    ResponseVO<Boolean> update(User currentUser, UserVO userVO);
 }

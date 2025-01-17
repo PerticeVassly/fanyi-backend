@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseVO<Boolean> register(String phone, String pwd) {
-        if (userRepository.findByPhoneAndPwd(phone, pwd).isPresent()) throw FanyiException.hasRegistered();
+        if (userRepository.findByPhone(phone).isPresent()) throw FanyiException.hasRegistered();
         User newUser = new User(phone, pwd);
         userRepository.save(newUser);
         return ResponseVO.buildSuccessResponse("注册成功", true);
@@ -36,6 +36,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseVO<UserVO> info(User currentUser) {
-        return ResponseVO.buildSuccessResponse("获取成功", new UserVO(currentUser));
+        return ResponseVO.buildSuccessResponse("获取成功", currentUser.toVO());
+    }
+
+    @Override
+    public ResponseVO<Boolean> update(User currentUser, UserVO userVO) {
+        if (userVO.getName() != null) currentUser.setName(userVO.getName());
+        if (userVO.getPhone() != null) currentUser.setPhone(userVO.getPhone());
+        if (userVO.getPwd() != null) currentUser.setPwd(userVO.getPwd());
+        userRepository.save(currentUser);
+        return ResponseVO.buildSuccessResponse("更新成功", true);
     }
 }

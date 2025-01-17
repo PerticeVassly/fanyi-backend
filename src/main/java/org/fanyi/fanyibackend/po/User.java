@@ -32,4 +32,8 @@ public class User {
         this.pwd = pwd;
         this.phone = phone;
     }
+
+    public UserVO toVO() {
+        return new UserVO(name, phone, pwd);
+    }
 }

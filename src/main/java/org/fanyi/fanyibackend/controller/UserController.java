@@ -2,6 +2,7 @@ package org.fanyi.fanyibackend.controller;
 
 import org.fanyi.fanyibackend.po.User;
 import org.fanyi.fanyibackend.service.UserService;
+import org.fanyi.fanyibackend.util.Translator;
 import org.fanyi.fanyibackend.vo.ResponseVO;
 import org.fanyi.fanyibackend.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,16 @@ public class UserController {
     }
 
 
-    @PostMapping("/info")
+    @GetMapping("/info")
     public ResponseVO<UserVO> info(HttpServletRequest request) {
         User currentUser = (User) request.getSession().getAttribute("currentUser");
         return userServiceImpl.info(currentUser);
     }
+
+    @PostMapping("/update")
+    public ResponseVO<Boolean> update(@RequestBody UserVO userVO, HttpServletRequest request) {
+        User currentUser = (User) request.getSession().getAttribute("currentUser");
+        return userServiceImpl.update(currentUser, userVO);
+    }
+
 }

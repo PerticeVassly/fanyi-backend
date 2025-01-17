@@ -11,7 +11,7 @@ public class FanyiBackendApplication {
 
     public static void main(String[] args) throws IOException {
 
-        EnvLoader.loadEnv(".env");
+//        EnvLoader.loadEnv(".env");
 
         SpringApplication.run(FanyiBackendApplication.class, args);
     }
